@@ -11,9 +11,9 @@ namespace Engine {
 		GLSLProgram();
 		~GLSLProgram();
 		void compileShaders(const std::string vertexFilePath, const std::string fragmentFilePath);
-		void linkShaders();
 		void addAttribute(const std::string attributeName);
 		GLint getUniformLocation(const std::string& uniformName);
+		void linkShaders();
 		void use();
 		void unuse();
 

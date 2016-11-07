@@ -11,8 +11,8 @@ namespace Engine {
 		~Camera2D();
 
 		void init(int _screenWidth, int _screenHeight);
-		void update();
 		glm::vec2 convertScreenToWorld(glm::vec2 screenCoords);
+		void update();
 
 		//Setters
 		void setPosition(const glm::vec2& newPosition) { _position = newPosition; _needsMatrixUpdate = true;}
@@ -24,11 +24,11 @@ namespace Engine {
 		glm::mat4 getCameraMatrix() { return _cameraMatrix; }
 
 	private:
-		int _screenWidth, _screenHeight;
-		bool _needsMatrixUpdate;
-		float _scale;
 		glm::vec2 _position;
 		glm::mat4 _cameraMatrix;
 		glm::mat4 _orthoMatrix;
+		int _screenWidth, _screenHeight;
+		bool _needsMatrixUpdate;
+		float _scale;
 	};
 }

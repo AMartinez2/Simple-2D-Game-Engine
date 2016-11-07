@@ -34,6 +34,18 @@ namespace Engine
 		compileShader(fragmentFilePath, _fragmentID);
 	}
 
+	void GLSLProgram::addAttribute(const std::string attributeName) {
+		glBindAttribLocation(_programID, _numAttrib++, attributeName.c_str());
+	}
+
+	GLint GLSLProgram::getUniformLocation(const std::string& uniformName) {
+		GLint location = glGetUniformLocation(_programID, uniformName.c_str());
+		if (location == GL_INVALID_INDEX) {
+			fatalError("Uniform " + uniformName + " not found in shader!");
+		}
+		return location;
+	}
+
 	void GLSLProgram::linkShaders() {
 
 		//Attach shaders to program
@@ -70,18 +82,6 @@ namespace Engine
 		glDetachShader(_programID, _fragmentID);
 		glDeleteShader(_vertexID);
 		glDeleteShader(_fragmentID);
-	}
-
-	void GLSLProgram::addAttribute(const std::string attributeName) {
-		glBindAttribLocation(_programID, _numAttrib++, attributeName.c_str());
-	}
-
-	GLint GLSLProgram::getUniformLocation(const std::string& uniformName) {
-		GLint location = glGetUniformLocation(_programID, uniformName.c_str());
-		if (location == GL_INVALID_INDEX) {
-			fatalError("Uniform " + uniformName + " not found in shader!");
-		}
-		return location;
 	}
 
 	void GLSLProgram::use() {
